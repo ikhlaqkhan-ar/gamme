@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tactical Top-Down Shooter - Pro Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Three.js Core and Addons via CDN -->
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.154.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.154.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+    <!-- 3D Canvas Container -->
+    <div id="game-container"></div>
 
+    <!-- Tactical HUD Overlay -->
+    <div id="hud" style="display: none;">
+        <!-- Reticle / Crosshair -->
+        <div id="crosshair">
+            <div class="ch-top"></div>
+            <div class="ch-bottom"></div>
+            <div class="ch-left"></div>
+            <div class="ch-right"></div>
+            <div class="ch-center"></div>
+        </div>
+
+        <!-- Damage / Hit Overlay -->
+        <div id="damage-vignette"></div>
+
+        <!-- Top Left: Mini-map -->
+        <div id="minimap-container">
+            <canvas id="minimap"></canvas>
+            <div class="minimap-scanline"></div>
+        </div>
+
+        <!-- Top Right: Killfeed & Score -->
+        <div id="top-right-stats">
+            <div id="alive-counter">HOSTILES REMAINING: <span>19</span></div>
+            <div id="killfeed"></div>
+        </div>
+
+        <!-- Bottom Left: Player Vitals -->
+        <div id="vitals-container">
+            <div class="health-bar-bg">
+                <div id="health-bar-fill"></div>
+            </div>
+            <div class="health-text">HP: <span id="hp-value">100</span>% | ARMOR: <span id="armor-value">50</span></div>
+            <div class="stance-indicator">STANCE: <span id="stance-value">STANDING</span></div>
+        </div>
+
+        <!-- Bottom Right: Inventory & Ammo -->
+        <div id="inventory-container">
+            <div id="weapon-name">ASSAULT RIFLE</div>
+            <div id="ammo-counter">
+                <span id="ammo-current">30</span> / <span id="ammo-reserve">120</span>
+            </div>
+            <div class="weapon-slots">
+                <div class="slot active" id="slot-1">1: AR</div>
+                <div class="slot" id="slot-2">2: SHOTGUN</div>
+                <div class="slot" id="slot-3">3: KNIFE</div>
+            </div>
+            <div id="reload-bar-container">
+                <div id="reload-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu / Lobby -->
+    <div id="main-menu">
+        <div class="menu-content">
+            <h1>OPERATION: SANDSTORM</h1>
+            <p>1 VS 19 TACTICAL SIMULATION</p>
+            <div class="controls-info">
+                <p><strong>[W A S D]</strong> Move</p>
+                <p><strong>[Mouse]</strong> Aim & Turn</p>
+                <p><strong>[Left Click]</strong> Fire</p>
+                <p><strong>[Right Click]</strong> Aim Down Sights (ADS)</p>
+                <p><strong>[R]</strong> Reload</p>
+                <p><strong>[1, 2, 3]</strong> Switch Weapons</p>
+                <p><strong>[Shift]</strong> Sprint / <strong>[C]</strong> Crouch</p>
+            </div>
+            <button id="btn-deploy">DEPLOY TO SECTOR</button>
+        </div>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
